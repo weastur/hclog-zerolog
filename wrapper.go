@@ -32,20 +32,20 @@ func NewWithCustomNameField(logger zerolog.Logger, nameField string) *Logger {
 	}
 }
 
-func (l *Logger) Log(level hclog.Level, format string, args ...any) {
+func (l *Logger) Log(level hclog.Level, msg string, args ...any) {
 	switch level {
 	case hclog.Trace:
-		l.logger.Trace().Fields(args).Msg(format)
+		l.logger.Trace().Fields(args).Msg(msg)
 	case hclog.Debug:
-		l.logger.Debug().Fields(args).Msg(format)
+		l.logger.Debug().Fields(args).Msg(msg)
 	case hclog.Info:
-		l.logger.Info().Fields(args).Msg(format)
+		l.logger.Info().Fields(args).Msg(msg)
 	case hclog.Warn:
-		l.logger.Warn().Fields(args).Msg(format)
+		l.logger.Warn().Fields(args).Msg(msg)
 	case hclog.Error:
-		l.logger.Error().Fields(args).Msg(format)
+		l.logger.Error().Fields(args).Msg(msg)
 	case hclog.NoLevel:
-		l.logger.Log().Fields(args).Msg(format)
+		l.logger.Log().Fields(args).Msg(msg)
 	case hclog.Off:
 		// no-op
 	default:
@@ -106,7 +106,12 @@ func (l *Logger) Name() string {
 }
 
 func (l *Logger) Named(name string) hclog.Logger {
-	newName := l.name + "." + name
+	var newName string
+	if l.name == "" {
+		newName = name
+	} else {
+		newName = l.name + "." + name
+	}
 
 	return &Logger{l.logger.With().Str(l.nameField, newName).Logger(), l.nameField, newName}
 }
