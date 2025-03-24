@@ -22,6 +22,8 @@ linters-settings:
         allow:
           - $gostd
           - github.com/weastur
+          - github.com/hashicorp/go-hclog
+          - github.com/rs/zerolog
         deny:
           - pkg: "math/rand$"
             desc: use math/rand/v2
