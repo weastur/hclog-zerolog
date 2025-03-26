@@ -1,8 +1,46 @@
 // main package is used to demonstrate how to use hclog-zerolog with go-hclog
 package main
 
-import "fmt"
+import (
+	"github.com/hashicorp/raft"
+	"github.com/rs/zerolog"
+	"github.com/rs/zerolog/log"
+)
+
+const ComponentCtxKey = "component"
 
 func main() {
-	fmt.Println("Hello, World!")
+	zerolog.TimeFieldFormat = zerolog.TimeFormatUnix
+	log.Logger = log.With().Str(ComponentCtxKey, "core").Logger()
+
+	log.Info().Msg("Starting")
+
+	config := raft.DefaultConfig()
+	config.LocalID = raft.ServerID("node1")
+
+	logs := raft.NewInmemStore()
+	stable := raft.NewInmemStore()
+
+	snapshots := raft.NewInmemSnapshotStore()
+	addr, transport := raft.NewInmemTransport("node1")
+
+	r, err := raft.NewRaft(config, nil, logs, stable, snapshots, transport)
+	if err != nil {
+		log.Fatal().Err(err).Msg("failed to create raft")
+	}
+
+	future := r.BootstrapCluster(raft.Configuration{
+		Servers: []raft.Server{
+			{
+				ID:      config.LocalID,
+				Address: addr,
+			},
+		},
+	})
+	if err := future.Error(); err != nil {
+		log.Fatal().Err(err).Msg("failed to bootstrap cluster")
+	}
+
+	log.Info().Msg("Started")
+	select {} // Block forever
 }
