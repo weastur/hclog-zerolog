@@ -5,6 +5,7 @@ import (
 	"github.com/hashicorp/raft"
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
+	hclogzerolog "github.com/weastur/hclog-zerolog"
 )
 
 const ComponentCtxKey = "component"
@@ -15,8 +16,11 @@ func main() {
 
 	log.Info().Msg("Starting")
 
+	raftLogger := log.With().Str(ComponentCtxKey, "raft").Logger()
+
 	config := raft.DefaultConfig()
 	config.LocalID = raft.ServerID("node1")
+	config.Logger = hclogzerolog.New(raftLogger)
 
 	logs := raft.NewInmemStore()
 	stable := raft.NewInmemStore()
