@@ -23,5 +23,7 @@ go.work.sum
 
 # env file
 .env
+
+/_example/bin
 /coverage.txt
 /coverage.html

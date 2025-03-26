@@ -1,7 +1,13 @@
-.PHONY: help build tests unit-tests unit-tests-cov version
+.PHONY: help build build-example tests unit-tests unit-tests-cov version
 .DEFAULT_GOAL := help
 
+BINARY_NAME=example
+BIN_DIR=./bin
 ROOT_DIR:=$(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
+
+build-example: ## Build example project
+	@mkdir -p ./_example/$(BIN_DIR)
+	go build -C _example -o $(BIN_DIR)/$(BINARY_NAME)
 
 build: ## Check if code is buildable
 	go build ./...
@@ -13,7 +19,6 @@ unit-tests: ## Run unit tests
 
 unit-tests-cov: ## Run unit tests with coverage
 	go test -v -coverprofile=coverage.txt ./...
-	go tool cover -html=coverage.txt -o coverage.html
 
 version: ## Create new version. Bump, tag, commit, create tag
 	@bump-my-version bump --verbose $(filter-out $@,$(MAKECMDGOALS))
