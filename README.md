@@ -5,7 +5,7 @@
 [![Go Report Card](https://goreportcard.com/badge/github.com/weastur/hclog-zerolog)](https://goreportcard.com/report/github.com/weastur/hclog-zerolog)
 [![codecov](https://codecov.io/gh/weastur/hclog-zerolog/graph/badge.svg?token=V94BPHSLB0)](https://codecov.io/gh/weastur/hclog-zerolog)
 [![test](https://github.com/weastur/hclog-zerolog/actions/workflows/test.yaml/badge.svg)](https://github.com/weastur/hclog-zerolog/actions/workflows/test.yaml)
-[![lint](https://github.com/weastur/hclog-zerolog/actions/workflows/lint.yaml/badge.svg)](https://github.com/weastur/hclog-zerolog/actions/workflows/lint.yaml)
+[![lint](https://github.com/weastur/hclog-zerolog/actions/workflows/lint.yaml/badge.svg)](https://github.com/weastur/hclog-zerolog/actions/workflows/lint.yaml)</br>
 ![GitHub Release](https://img.shields.io/github/v/release/weastur/hclog-zerolog)
 ![GitHub commits since latest release](https://img.shields.io/github/commits-since/weastur/hclog-zerolog/latest)
 ![GitHub go.mod Go version](https://img.shields.io/github/go-mod/go-version/weastur/hclog-zerolog)
