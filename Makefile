@@ -1,4 +1,4 @@
-.PHONY: help build build-example tests unit-tests unit-tests-cov version
+.PHONY: help build build-example tests unit-tests unit-tests-cov
 .DEFAULT_GOAL := help
 
 BINARY_NAME=example
@@ -19,9 +19,6 @@ unit-tests: ## Run unit tests
 
 unit-tests-cov: ## Run unit tests with coverage
 	go test -v -coverprofile=coverage.txt ./...
-
-version: ## Create new version. Bump, tag, commit, create tag
-	@bump-my-version bump --verbose $(filter-out $@,$(MAKECMDGOALS))
 
 %:
 	@:
