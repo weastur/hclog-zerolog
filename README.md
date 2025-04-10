@@ -1,5 +1,7 @@
 # hclog-zerolog
 
+<div align="center">
+
 [![Go Report Card](https://goreportcard.com/badge/github.com/weastur/hclog-zerolog)](https://goreportcard.com/report/github.com/weastur/hclog-zerolog)
 [![codecov](https://codecov.io/gh/weastur/hclog-zerolog/graph/badge.svg?token=V94BPHSLB0)](https://codecov.io/gh/weastur/hclog-zerolog)
 [![test](https://github.com/weastur/hclog-zerolog/actions/workflows/test.yaml/badge.svg)](https://github.com/weastur/hclog-zerolog/actions/workflows/test.yaml)
@@ -8,6 +10,8 @@
 ![GitHub commits since latest release](https://img.shields.io/github/commits-since/weastur/hclog-zerolog/latest)
 ![GitHub go.mod Go version](https://img.shields.io/github/go-mod/go-version/weastur/hclog-zerolog)
 ![GitHub License](https://img.shields.io/github/license/weastur/hclog-zerolog)
+
+</div>
 
 **hclog-zerolog** is a wrapper for [zerolog](https://github.com/rs/zerolog)
 to use it as an implementation of
@@ -49,6 +53,10 @@ config.Logger = hclogzerolog.New(raftLogger)
 
 Despite it's extremely simple, you can refer to the [example](./_example/) and
 [godoc](https://pkg.go.dev/github.com/weastur/hclog-zerolog) to see a bit more.
+
+## Contributing
+
+Contributions are welcome! Please read the [CONTRIBUTING.md](CONTRIBUTING.md) file for details on how to contribute to this project.
 
 ## Security
 
