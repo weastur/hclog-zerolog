@@ -27,3 +27,6 @@ go.work.sum
 /_example/bin
 /coverage.txt
 /coverage.html
+/.task
+/_example/example
+/_example/example.exe
